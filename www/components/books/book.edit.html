@@ -1,0 +1,89 @@
+<ion-view cache-view="false" view-title="{{bookEditData._id.length ? 'Edit' : 'New'}} Book {{bookEditData.isbn}}">
+  <ion-header-bar>
+    <h1 class="title">{{bookEditOptions.title}}</h1>
+  </ion-header-bar>
+  <form name="bookEditForm" ng-submit="bookEditSave(bookEditForm)" novalidate="">
+    <ion-tabs "tabs-positive tabs-icon-top">
+      <ion-tab title="Book">
+        <ion-view>
+          <ion-content>
+            <div class="list">
+
+              <!-- Debug (optional), ID -->
+              <ion-item class="item item-input">
+                <div class="input-label">ID</div>
+                {{(bookEditData._id ? bookEditData._id : '--')}}
+              </ion-item>
+
+              <!-- ISBN -->
+              <label class="item item-input">
+                <span class="input-label">ISBN</span>
+                <div ng-if="!bookEditData._id.length">
+                  <input type="text" name="isbn" ng-model="bookEditData.isbn" ng-class="{'has-errors' : bookEditForm.isbn.$invalid}" required >
+                  <div class="error-container" ng-show="bookEditForm.isbn.$error" ng-messages="bookEditForm.isbn.$error">
+                    <div ng-messages-include="components/common/error-list.html"></div>
+                  </div>
+                </div>
+                <div ng-if="bookEditData._id.length">{{bookEditData.isbn}}</div>
+              </label>
+
+              <!-- Title, Author, Publisher -->
+              <label class="item item-input item-stacked-label">
+                <span class="input-label">Title</span>
+                <input type="text" ng-model="bookEditData.title">
+              </label>
+              <label class="item item-input item-stacked-label">
+                <span class="input-label">Author</span>
+                <input type="text" ng-model="bookEditData.author">
+              </label>
+              <label class="item item-input item-stacked-label">
+                <span class="input-label">Publisher</span>
+                <input type="text" ng-model="bookEditData.publisher">
+              </label>
+              <label class="item item-input item-stacked-label">
+                <span class="input-label">Keywords</span>
+                <input type="text" ng-model="bookEditData.keywords">
+              </label>
+              <div class="item">
+                <a class="button button-block button-balanced icon-left ion-qr-scanner"
+                    ng-if="!bookEditData._id.length" ng-click="doScan()" >Optical Scan Barcode</a>
+                <a class="button button-block button-balanced icon-left ion-android-list"
+                    ng-disabled="!bookEditData.isbn.trim().length" ng-click="setBookDetails()">Get Book Details</a>
+                <button class="button button-block button-positive" type="submit" ng-disabled="!bookEditForm.$valid">Save</button>
+              </div>
+            </div>
+          </ion-content>
+        </ion-view>
+      </ion-tab>
+      <ion-tab title="Availability">
+        <ion-view>
+          <ion-content>
+            <div class="list">
+
+              <!-- Owner, Location, Availability -->
+              <label class="item item-input item-stacked-label">
+                <span class="input-label">Owner</span>
+                <p class="with-newlines">{{bookEditData.owner}}</p>
+              </label>
+              <label class="item item-input item-stacked-label">
+                <span class="input-label">Location</span>
+                <input type="text" ng-model="bookEditData.location">
+              </label>
+              <label class="item item-toggle">
+                <span class="input-label">Available for Loan</span>
+                <label class="toggle toggle-balanced">
+                  <input type="checkbox" ng-model="bookEditData.available">
+                  <div class="track">
+                    <div class="handle"></div>
+                  </div>
+                </label>
+              </label>
+              <div class="item">
+                <button class="button button-block button-positive" type="submit" ng-disabled="!bookEditForm.$valid">Save</button>
+              </div>
+            </div>
+          </ion-content>
+        </ion-view>
+      </ion-tab>
+  </form>
+</ion-view>

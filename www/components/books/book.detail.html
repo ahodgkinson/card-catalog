@@ -1,0 +1,103 @@
+<ion-view cache-view="false" view-title="Book {{book.isbn}}">
+  <ion-nav-buttons side="secondary">
+    <div class="buttons" ng-if="revision===undefined">
+      <button class="button button-icon icon ion-more" ng-click="openPopover($event)"></button>
+    </div>
+  </ion-nav-buttons>
+
+  <ion-tabs "tabs-positive">
+    <ion-tab title="Book">
+      <ion-view>
+        <ion-content>
+          <ion-list>
+            <!-- Debug (optional), ID, Scan Code -->
+            <ion-item class="item item-input" ng-if="debugMode">
+              <span class="input-label">ID</span>
+              {{(book._id ? book._id : '--')}}
+            </ion-item>
+            <ion-item class="item item-input">
+              <span class="input-label">ISBN</span>
+              {{book.isbn}}
+            </ion-item>
+
+            <!-- Title, Author, Pulisher -->
+            <ion-item class="item item-text-wrap">
+              <div>Title</div>
+              <p class="with-newlines">{{book.title}}</p>
+            </ion-item>
+            <ion-item class="item item-text-wrap">
+              <div>Author</div>
+              <p class="with-newlines">{{book.author}}</p>
+            </ion-item>
+            <ion-item class="item item-text-wrap">
+              <div>Publisher</div>
+              <p class="with-newlines">{{book.publisher}}</p>
+            </ion-item>
+            <ion-item class="item item-text-wrap">
+              <div>Keywords</div>
+              <p class="with-newlines">{{book.keywords}}</p>
+            </ion-item>
+
+            <!-- Buttons -->
+            <ng-include src="'components/books/book.detail.buttons.html'"></ng-include>
+          </ion-list>
+        </ion-content>
+      </ion-view>
+    </ion-tab>
+
+    <ion-tab title="Availability">
+      <ion-view>
+        <ion-content>
+          <ion-list>
+
+            <!-- Owner, Location, Available for Loan -->
+            <ion-item class="item item-text-wrap">
+              <div>Owner</div>
+              <p class="with-newlines">{{book.owner}}</p>
+            </ion-item>
+            <ion-item class="item item-text-wrap">
+              <div>Location</div>
+              <p class="with-newlines">{{book.location}}</p>
+            </ion-item>
+            <ion-item class="item item-input">
+              <span class="input-label">Available for Loan</span>
+              <i class="{{book.available ? 'ion-android-checkbox-outline' : 'ion-android-checkbox-outline-blank'}}"></i>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-view>
+    </ion-tab>
+
+    <ion-tab title="History">
+      <ion-view>
+        <ion-content>
+          <ion-list>
+
+            <!-- Created/Updated at/by -->
+
+            <ion-item class="item item-text-wrap">
+              <div>Created</div>
+              <p class="with-newlines">{{record_created_at}}</p>
+            </ion-item>
+            <ion-item class="item item-text-wrap">
+              <div>Last Update</div>
+              <p class="with-newlines">{{record_updated_at}}</p>
+            </ion-item>
+
+            <ion-item class="item item-text-wrap">
+              <div>Created by</div>
+              <p class="with-newlines">{{book.created_by}}</p>
+            </ion-item>
+            <ion-item class="item item-text-wrap">
+              <div>Updated by</div>
+              <p class="with-newlines">{{book.updated_by}}</p>
+            </ion-item>
+
+            <!-- Buttons -->
+            <ng-include src="'components/books/book.detail.buttons.html'"></ng-include>
+          </ion-list>
+        </ion-content>
+      </ion-view>
+    </ion-tab>
+  </ion-tabs>
+</ion-view>

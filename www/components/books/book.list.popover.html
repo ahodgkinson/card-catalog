@@ -1,0 +1,9 @@
+<ion-popover-view>
+  <ion-content>
+    <ion-item menu-close><strong>Order by</strong></ion-item>
+    <span ng-repeat="(f, n) in sort_config">
+      <ion-item menu-close ng-click="sortList('{{f}} asc')" class="menu-item {{sort == (f + ' asc') ? 'selected-item item' : 'item'}}">&nbsp;&nbsp;{{n}} ascending</ion-item>
+      <ion-item menu-close ng-click="sortList('{{f}} desc')" class="menu-item {{sort == (f + ' desc') ? 'selected-item item' : 'item'}}">&nbsp;&nbsp;{{n}} descending</ion-item>
+    </span>
+  </ion-content>
+</ion-popover-view>

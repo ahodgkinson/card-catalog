@@ -1,0 +1,33 @@
+<ion-view view-title="Card Catalog">
+  <ion-content>
+    <div ng-controller="HomeController as home" class="item item-text-wrap">
+      <div class="item item-gray item-divider">ISBN</div>
+      <form>
+        <label class="item item-input">
+          <input type="text" ng-model="isbn" placeholder="Enter ISBN">
+        </label>
+          <!-- Button to catch 'enter' in ISBN field, to avoid immediately activating search function -->
+        <button style="overflow: visible !important; height: 0 !important; width: 0 !important; margin: 0
+              !important; border: 0 !important; padding: 0 !important; display: block !important;"></button>
+        <button class="button button-block button-balanced icon-left ion-qr-scanner" ng-click="doScan()" >Optical Scan Barcode</button>
+        <button class="button button-block button-balanced icon-left ion-search"     ng-click="doSearchIsbn()" type="submit"
+            ng-disabled="!isbn.length">Search for ISBN</button>
+      </form>
+
+      <div class="item item-divider">Search Words</div>
+      <form>
+        <label class="item item-input">
+          <input type="text" ng-model="words" placeholder="Enter search words">
+        </label>
+        <button style="overflow: visible !important; height: 0 !important; width: 0 !important; margin: 0
+            !important; border: 0 !important; padding: 0 !important; display: block !important;"></button>
+        <button class="button button-block button-balanced icon-left ion-search" ng-click="doSearchWords()" type="submit"
+            ng-disabled="!words.length">Search for Books</button>
+      </form>
+      <a class="button button-block button-positive icon-left ion-filing" href="#/app/books">List Books</a>
+
+      <div class="item item-divider">New Book</div>
+      <a class="button button-block button-positive icon-left ion-plus-circled" href="#/app/books/new">New Book</a>
+    </div>
+  </ion-content>
+</ion-view>

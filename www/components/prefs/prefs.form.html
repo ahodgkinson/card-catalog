@@ -1,0 +1,46 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Preferences</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="prefsHide()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="prefsSave()">
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+          <div class="input-label">Server</div>
+          <input type="text" ng-model="prefsData.server">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">User Name</span>
+          <input type="text" ng-model="prefsData.username">
+        </label>
+        <label ng-if="prefsData.serverAuth" class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="prefsData.password">
+        </label>
+        <label ng-if="prefsData.debugMode" class="item item-input">
+          <span class="input-label">ISBN DB Key</span>
+          <input type="password" ng-model="prefsData.isbnKey">
+        </label>
+        <label ng-if="prefsData.debugMode" class="item item-input item-select">
+          <span class="input-label">Log Level</span>
+	  <select ng-model="prefsData.logLevel" ng-options="option.id as option.name for option in logLevelOptions"></select>
+        </label>
+        <label class="item item-toggle">
+          <span class="input-label">Debug Mode</span>
+          <label class="toggle toggle-balanced">
+            <input type="checkbox" ng-model="prefsData.debugMode">
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+          </label>
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Save</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

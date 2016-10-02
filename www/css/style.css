@@ -1,0 +1,72 @@
+/* Empty. Add your own CSS if you like */
+
+/* (re-)enable italic text, disblaed by ionic.min.css
+     See: https://forum.ionicframework.com/t/no-italics-i-em/27028/2
+*/
+em,i {
+  font-style: italic;
+}
+
+/* Popover */
+.popover {
+  height: auto !important;
+}
+.popover ion-header-bar {
+  position: relative;
+}
+.popover ion-content {
+  top: 0;
+  position: relative;
+}
+.popover-inner-content {
+  width: 100%;
+  padding: 5px 20px;
+}
+p.with-newlines {
+  white-space: pre-wrap;
+}
+
+/* Overwrite ionic.css*/
+.overflow-scroll {
+  overflow-y: auto !important;	/* instead of scroll */
+}
+
+/* Form validation */
+
+.error-container {
+  margin: 5px 0;
+}
+
+.error-container:last-child {
+  margin: 5px 0 0;
+}
+
+.error {
+  padding-lefft: 8px;
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 14px;
+  color: red;
+  vertical-align: middle;
+}
+
+.error i {
+  font-size: 24px;
+  color: red;
+  vertical-align: middle;
+}
+
+.last-error-container > .error {
+  padding: 10px 16px 0;
+}
+
+.has-errors {
+  border-bottom: 2px solid red !important;
+}
+
+/* Make menu items lower */
+.menu-item {
+  padding: 8px 16px !important;	/* ionic's .item 16px */
+}
+.menu-item.selected-item {
+  background-color: LightGray !important;
+}

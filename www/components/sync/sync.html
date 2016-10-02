@@ -1,0 +1,39 @@
+<ion-view view-title="Synchronize" cache-view="false">
+  <ion-content>
+    <div class="card">
+      <div class="item item-divider">Data Records</div>
+      <ion-list>
+        <ion-item class="item item-input">
+	  <span class="input-label">Books</span>
+          {{sync.stats.books}}
+	  <span ng-if="sync.conflicts.books">
+	    &nbsp;(Conflicts: {{sync.conflicts.books}} <a href="#/app/books?conflicts=1">[List]</a>)
+	  </span>
+        </ion-item>
+        <ion-item class="item item-input" ng-if="debugMode">
+          <span class="input-label">PouchDB</span>
+          {{sync.stats.pouch}}
+        </ion-item>
+      </ion-list>
+      <div class="item item-text-wrap">
+        <button class="button button-block button-energized    icon-left ion-loop" ng-click="sync.recount()">Update Record Counts</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item item-divider">Synchronize</div>
+      <div class="item item-text-wrap">
+        <button ng-disabled="sync.downloading || sync.uploading" class="button button-block button-royal     icon-left ion-ios-cloud-download" 
+            ng-click="sync.download()">{{sync.downloading ? "Downloading.." : "Download"}}</button>
+        <button ng-disabled="sync.downloading || sync.uploading" class="button button-block button-positive  icon-left ion-ios-cloud-upload"   
+            ng-click="sync.upload()"  >{{sync.uploading   ? "Uploading.."   : "Upload"  }}</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="item item-divider">Reset Application</div>
+      <div class="item item-text-wrap">
+        <button class="button button-block button-assertive icon-left ion-ios-trash" ng-click="sync.purge()"   >Reset Application</a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

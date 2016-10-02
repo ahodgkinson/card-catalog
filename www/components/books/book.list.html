@@ -1,0 +1,43 @@
+<ion-view cache-view="false" view-title="Book List">
+  <ion-nav-buttons side="secondary">
+    <div class="buttons">
+      <button class="button button-icon icon ion-more" ng-click="openPopover($event)"></button>
+    </div>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <ion-list>
+      <ion-item ng-if="!books.length">
+        <p><b ng-if="!books.length">No Books Found</b></p>
+        <h3>ISBN</h3>
+        <p>{{isbn}}</p>
+      </ion-item>
+      <ion-item ng-if="!books.length">
+        <a class="button button-block button-balanced icon-left ion-plus-circled"
+            href="#/app/books/new?isbn={{isbn}}">New Book ({{isbn}})</a>
+      </ion-item>
+
+      <ion-item ng-repeat="book in books" href="#/app/books/{{book._id}}">
+        <div ng-if="prefsData.debugMode">(ID = {{book._id}})</div>
+        <div class="row">
+          <div class="col"><b>
+            ISBN<br>
+            Title<br>
+            Author<br>
+            Publisher<br>
+            Owner
+          </b></div>
+          <div class="col">
+            {{book.isbn}}</br>
+            {{book.title}}</br>
+            {{book.author}}</br>
+            {{book.publisher}}</br>
+            {{book.owner}}
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll ng-if="!noMoreData" on-infinite="fetchMore()" distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
+</ion-view>
